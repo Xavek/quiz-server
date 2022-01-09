@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
+const dotenv = require("dotenv");
+dotenv.config();
+// For cross origin resource policy
 app.use(cors());
 // parses the incoming json data.
 app.use(express.json());
@@ -51,7 +53,7 @@ app.post("/api/questions/answer", (req, res) => {
   }
   console.log(req.body);
 });
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("App running");
 });
