@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
+const helmet = require("helmet");
 dotenv.config();
+// using helmet for web security
+app.use(helmet());
 // For cross origin resource policy
 app.use(cors());
 // parses the incoming json data.
