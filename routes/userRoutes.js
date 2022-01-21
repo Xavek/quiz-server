@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { UserService } = require("../controllers/userController");
 // Expect User Sign Up Page
 // New User onboarding
 /*
@@ -14,7 +15,9 @@ router.post("/iqquiz/api/user/auth", (req, res) => {
   if (!req.body) {
     res.send({ msg: "Empty data sent" });
   } else {
-    res.send({ msg: "Your Request got accepted!" });
+    const { token, value } = UserService.createUser(req.body);
+    const message = UserService.saveNewUser(value);
+    res.send({ acessResponse: token, msg: message });
   }
   console.log(req.body);
 });
