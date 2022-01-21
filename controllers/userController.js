@@ -6,6 +6,7 @@ const schema = Joi.object({
   username: Joi.string().alphanum().min(4).max(8).required(),
   password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
 });
+const SecretKey = process.env.secretKey;
 
 class UserService {
   /*
@@ -21,7 +22,7 @@ class UserService {
     try {
       const { error, value } = schema.validate(userDetails);
       if (!error) {
-        const token = jwt.sign({ data: value.username }, "ssh");
+        const token = jwt.sign({ data: value.username }, SecretKey);
         return { token, value };
       } else {
         return error.message;
