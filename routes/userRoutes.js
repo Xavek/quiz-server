@@ -9,7 +9,6 @@ const { UserService } = require("../controllers/userController");
 3. Create the hash salt for user password and save to the db
 4. Check for the If user Already exist
 5. Write a controller function for generating a user-tokens and creating hash for pass
-
 */
 router.post("/iqquiz/api/user/auth", (req, res) => {
   if (!req.body) {
